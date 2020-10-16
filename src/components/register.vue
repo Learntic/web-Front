@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
+import { SIGN_UP } from "../graphql/mutations";
 export default {
   name: "RegisterComponente",
   data() {
@@ -44,21 +44,17 @@ export default {
     };
   },
   methods: {
-    registerUser: function() {
-      this.$apollo
-        .query({
-          query: gql`
-            query {
-              signIn(
-                account: {
-                  username: ${this.user}
-                  password: ${this.password}
-                }
-              )
-            }`,
+    registerUser: async function() {
+      await this.$apollo
+        .mutate ({
+          mutation: SIGN_UP,
+          variables: {
+            username: this.user,
+            password: this.password,
+          },
         })
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
         });
     },
   },

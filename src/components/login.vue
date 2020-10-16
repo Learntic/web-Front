@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { SIGN_IN } from "../graphql/queries";
 export default {
   name: "LoginComponente",
   data() {
@@ -42,6 +43,19 @@ export default {
     };
   },
   methods: {
+    loginUsuario: async function() {
+      await this.$apollo
+        .query({
+          query: SIGN_IN,
+          variables: {
+            username: this.user,
+            password: this.password,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>
