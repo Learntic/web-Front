@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
-      For a guide and recipes on how to configure / customize this project,<br />
+      For a guidess and recipes on how to configure / customize this project,<br />
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
         >vue-cli documentation</a
@@ -107,34 +107,14 @@
         >
       </li>
     </ul>
-    <button v-on:click="testApollo()">Test Apollo</button>
   </div>
 </template>
 
 <script>
-  import gql from 'graphql-tag'
-
-
 export default {
   name: "HelloWorld",
   props: {
     msg: String
-  },
-  methods: {
-    testApollo: function() {
-      this.$apollo.query({
-          query: gql`
-            query {
-              myFriends(token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjdjZjg3ODVjYjQwNTU2MTgyNjA2OWEiLCJpYXQiOjE2MDIwNDEyMTUsImV4cCI6MTYwMzI1MDgxNX0.XWyj5MVqmm3w3qi7YV9Q4AR7DU22iLwZUbzjap1MvmU", id: "0x11172") {
-                  fullname
-                username
-                age
-              }
-            }`
-      }).then(res => {
-        console.log(res);
-      })
-    }
   }
 };
 </script>
