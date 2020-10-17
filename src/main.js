@@ -8,6 +8,9 @@ import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
+import vmodal from 'vue-js-modal'
+Vue.use(vmodal)
+
 Vue.use(VueApollo);
 // HTTP connection to the API
 const httpLink = createHttpLink({

@@ -4,11 +4,13 @@
     <h1>{{this.user.fullname}}</h1>
     <p class="title">{{this.user.email}}</p>
     <p>{{this.user.username}}</p>
-    <p><button v-on:click="getUser()">Edit</button></p>
+    <p><button id="edit-btn" v-on:click="editUser()">Edit</button></p>
   </div>
 </template>
 
 <script>
+import {GET_USER} from "../graphql/queries"
+
 export default {
   name: "Profile",
   props: {
@@ -16,17 +18,30 @@ export default {
   },
   data() {
     return {
-      user: {
-        fullname: "Cristian Mantilla", 
-        username: "camantillad",
-        email: "camantillad@unal.edu.co"
-      }
+      user: {}
     }
   },
   methods: {
     getUser: function() {
       console.log("WHen they're playing")
+      this.$apollo.query({
+          query: GET_USER
+      }).then(res => {
+        this.user = res.data.getUser
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    editUser() {
+      console.log(this)
+      this.$modal.show('dialog', {
+        title: 'Information',
+        text: 'Check out, I have a title 😎'
+      })
     }
+  },
+  created() {
+    this.getUser()
   }
 };
 </script>
@@ -87,5 +102,9 @@ button:hover, a:hover {
 
 img {
   border-radius: 50%;
+}
+
+#edit-btn {
+  background: #2F5D71;
 }
 </style>
