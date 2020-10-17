@@ -15,6 +15,7 @@ export default new Vuex.Store({
     },
     actions: {
         login({ commit }, credentials) {
+            console.log(credentials);
             commit("SET_USER_DATA", credentials);
         },
     },
