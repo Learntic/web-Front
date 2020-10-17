@@ -55,6 +55,7 @@ export default {
         .then((res) => {
           console.log(res.data.signIn);
           this.$store.dispatch("login", res.data.signIn);
+          this.$router.push({ name: "Home" });
         });
     },
   },

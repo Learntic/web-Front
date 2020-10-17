@@ -15,7 +15,7 @@ mutation signUp($username: String!, $password: String!) {
 //Cursos-ms
 
 export const COURSE_INSCRIPTION = gql `
-mutation createInscription($username: String!, idCourse: Number!){
+mutation createInscription($username: String!, $idCourse: Number!){
   createInscription(inscription:{
     id_usuario: $username
     id_curso: $idCourse
@@ -38,12 +38,12 @@ mutation deleteInscription($Id_inscription: Number){
 //Feedback-Ms
 
 export const CREATE_FEEDBACK = gql `
-mutation createFeedback($username: String!, idCourse: Number!, opinion: String!, score: Number!, userToken: String!){
+mutation createFeedback($username: String!, $idCourse: Number!, $opinion: String!, $score: Number!, $userToken: String!){
   createFeedback(feedback: {
-    id_usuario: $username
-    id_curso: $idCourse
-    opinion: $opinion
-    nota: $score
+    id_usuario: $username,
+    id_curso: $idCourse,
+    opinion: $opinion,
+    nota: $score,
   }, token: $userToken) {
     id
     id_usuario
@@ -57,3 +57,28 @@ export const DELETE_FEEDBACK = gql `
 mutation deleteFeedback($idFeedback: Number!){
   deleteFeedback(id: $idFeedback)
 }`
+
+//Achievements_MS
+
+export const CREATE_ACHIEVEMENT = gql `
+mutation createAchievement($achievementName: String!, $achievementDescription: String!){
+  createAchievement(achievement2: {
+    name : $achievementName, 
+    description : $achievementDescription
+  }){
+  	name  
+  } 
+}`
+
+export const CREATE_ACHIEVEMENT_USER = gql `
+mutation createUserAchievements($username: String!, $shared: Boolean!, $idAchievements: String!){
+  createUserAchievements(user_achievement2: 
+    {
+			username : $username,
+      shared : $shared,
+      achievements_id: $idAchievements})
+  {
+    username
+    shared
+  } 
+}`;

@@ -27,6 +27,6 @@ export default {
 
 <style scoped>
 .learnticButton {
-    background: white;
+    background: #233a4d;
 }
 </style>
