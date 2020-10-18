@@ -1,4 +1,22 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag'
+
+// USER-MS
+export const UPDATE_USER = gql`
+                mutation updateUser($fullname: String, $username: String, $email: String, $token: String!){
+                    updateUser( 
+                        token: $token, 
+                        id: "0x2", 
+                        user: {
+                            fullname: $fullname
+                            username: $username
+                            email: $email
+
+                    }) {
+                        fullname
+                        username
+                        email
+                    }
+                }`
 
 //auth-ms
 

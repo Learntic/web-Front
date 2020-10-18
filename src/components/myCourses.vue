@@ -29,7 +29,7 @@ export default {
     };
   },
   created() {
-      if (localStorage.getItem("user")) {
+    if (localStorage.getItem("user")) {
       try {
         this.currentUser = JSON.parse(localStorage.getItem("user"));
       } catch (e) {

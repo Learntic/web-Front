@@ -1,16 +1,19 @@
-import gql from "graphql-tag";
-
+import gql from 'graphql-tag'
 
 // USER-MS
-export const GET_MY_FRIENDS = gql `
-    query {
-        myFriends(token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjdjZjg3ODVjYjQwNTU2MTgyNjA2OWEiLCJpYXQiOjE2MDIwNDEyMTUsImV4cCI6MTYwMzI1MDgxNX0.XWyj5MVqmm3w3qi7YV9Q4AR7DU22iLwZUbzjap1MvmU", id: "0x11172") {
+export const GET_USER = gql`
+query getUser($token: String!) {
+    getUser(
+        id: "0x2",
+        token: $token
+        ){
         fullname
         username
+        email
         age
-        }
-    }`
-
+        error
+    }
+}`
 
 // AUTH-MS
 
