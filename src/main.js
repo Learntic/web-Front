@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import router from "./router";
 import store from "./store";
 
@@ -7,12 +8,16 @@ import VueApollo from "vue-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+Vue.use(BootstrapVue);
 
 Vue.use(VueApollo);
 // HTTP connection to the API
 const httpLink = createHttpLink({
   // You should use an absolute URL here
-  uri: `http://172.17.0.3:5000/graphql`
+  uri: `http://localhost:5000/graphql`
 });
 
 // Cache implementation
