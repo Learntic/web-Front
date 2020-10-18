@@ -4,12 +4,30 @@
     <h1>{{this.user.fullname}}</h1>
     <p class="title">{{this.user.email}}</p>
     <p>{{this.user.username}}</p>
-    <p><button id="edit-btn" v-on:click="editUser()">Edit</button></p>
+    <p><b-button id="edit-btn" @ok="editUser"  v-b-modal.my-modal>Edit</b-button></p>
+    <div>
+      <b-modal id="my-modal" ref="modal" title="Edit your info" @ok="editUser">
+      <form ref="form" @submit.stop.prevent="handleSubmit">
+        <b-form-group label="Fullname" label-for="fullname-input" invalid-feedback="Name is required">
+          <b-form-input id="fullname-input" v-model="user.fullname" required> </b-form-input>
+        </b-form-group>
+        <b-form-group label="Username" label-for="username-input" invalid-feedback="Name is required">
+          <b-form-input id="username-input" v-model="user.username" default-value="hey" required> </b-form-input>
+        </b-form-group>
+        <b-form-group label="Email" label-for="email-input" invalid-feedback="Name is required">
+          <b-form-input id="email-input" v-model="user.email" default-value="hey" required> </b-form-input>
+        </b-form-group>
+      </form>
+    </b-modal>
+    </div>
   </div>
+  
 </template>
 
 <script>
 import {GET_USER} from "../graphql/queries"
+import {UPDATE_USER} from "../graphql/mutations"
+
 
 export default {
   name: "Profile",
@@ -18,7 +36,9 @@ export default {
   },
   data() {
     return {
-      user: {}
+      user: {
+      },
+      name: "Cristian"
     }
   },
   methods: {
@@ -33,10 +53,19 @@ export default {
       })
     },
     editUser() {
-      console.log(this)
-      this.$modal.show('dialog', {
-        title: 'Information',
-        text: 'Check out, I have a title 😎'
+      this.$apollo.mutate({
+          mutation: UPDATE_USER,
+          variables: {
+            fullname: this.user.fullname,
+            username: this.user.username,
+            email: this.user.email,
+
+          }
+      }).then(res => {
+        // this.user = res.data.getUser
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
       })
     }
   },
