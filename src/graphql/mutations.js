@@ -15,7 +15,7 @@ mutation signUp($username: String!, $password: String!) {
 //Cursos-ms
 
 export const COURSE_INSCRIPTION = gql `
-mutation createInscription($username: String!, $idCourse: Number!){
+mutation createInscription($username: String!, $idCourse: Int!){
   createInscription(inscription:{
     id_usuario: $username
     id_curso: $idCourse
@@ -29,7 +29,7 @@ mutation createInscription($username: String!, $idCourse: Number!){
 }`
 
 export const COURSE_UNINSCRIPTION = gql `
-mutation deleteInscription($Id_inscription: Number){
+mutation deleteInscription($Id_inscription: Int){
   deleteInscription(id:$Id_inscription) {
     id
   }
@@ -38,7 +38,7 @@ mutation deleteInscription($Id_inscription: Number){
 //Feedback-Ms
 
 export const CREATE_FEEDBACK = gql `
-mutation createFeedback($username: String!, $idCourse: Number!, $opinion: String!, $score: Number!, $userToken: String!){
+mutation createFeedback($username: String!, $idCourse: Int!, $opinion: String!, $score: Int!, $userToken: String!){
   createFeedback(feedback: {
     id_usuario: $username,
     id_curso: $idCourse,
@@ -54,7 +54,7 @@ mutation createFeedback($username: String!, $idCourse: Number!, $opinion: String
 }`
 
 export const DELETE_FEEDBACK = gql `
-mutation deleteFeedback($idFeedback: Number!){
+mutation deleteFeedback($idFeedback: Int!){
   deleteFeedback(id: $idFeedback)
 }`
 

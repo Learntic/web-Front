@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7">
         <myCourses></myCourses>
         <allCourses></allCourses>
       </div>

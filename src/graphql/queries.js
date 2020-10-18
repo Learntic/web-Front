@@ -15,7 +15,7 @@ export const GET_MY_FRIENDS = gql `
 // AUTH-MS
 
 export const SIGN_IN = gql `
-query singIn($username: String!, $password: String!) {
+query signIn($username: String!, $password: String!) {
   signIn(
     account: {
       username: $username
@@ -59,13 +59,13 @@ query searchCourse($cadena: String!){
 }`
 
 export const COURSE_TOPICS = gql `
-query courseTopics($entero: Number!) {
-  courseTopics(idCurso:{entero: $entero}){
+query courseTopics($idCourse: Int!) {
+  courseTopics(idCurso: {entero: $idCourse}){
     topic_id
     topic_description
     topic_name
-  }
-}`
+    }
+  }`
 
 export const COURSES_USER = gql `
 query inscriptionByUserId($username: String!){
@@ -80,8 +80,8 @@ query inscriptionByUserId($username: String!){
 //Feedback-Ms
 
 export const FEEDBACKS_COURSE = gql `
-query feedbackByCourse($idCurso: Number!){
-  feedbackByCourse(id_curso: $idCurso) {
+query feedbackByCourse($idCourse: Int!){
+  feedbackByCourse(id_curso: $idCourse) {
     id
     id_usuario
     id_curso
@@ -91,8 +91,8 @@ query feedbackByCourse($idCurso: Number!){
 }`
 
 export const SCORE_COURSE = gql `
-query ($idCurso: Number!){
-  feedbackScore(id_curso: $idCurso)
+query ($idCourse: Int!){
+  feedbackScore(id_curso: $idCourse)
 }`
 
 //Achievements_MS

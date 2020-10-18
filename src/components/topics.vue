@@ -2,6 +2,9 @@
   <div>
     <b-card v-for="item in topics" :key="item.id" class="card">
       <b-card-title> {{ item.topic_name }} </b-card-title>
+      <b-card-text>
+      {{item.topic_description}}
+    </b-card-text>
     </b-card>
   </div>
 </template>
@@ -13,6 +16,7 @@ export default {
   data() {
     return {
       topics: [],
+      currentCourse: parseInt(this.$route.params.id)
     };
   },
   created() {
@@ -24,11 +28,11 @@ export default {
         .query({
           query: COURSE_TOPICS,
           variables: {
-            entero: this.$route.params.id
+            idCourse: this.currentCourse
           }
         })
         .then((res) => {
-          console.log(res.data);
+          this.topics = res.data.courseTopics;
         });
     },
   }

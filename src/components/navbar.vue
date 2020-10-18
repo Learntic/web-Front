@@ -8,15 +8,19 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <div>
+        <div v-if="!loggedIn">
           <b-button href="/login" class="loginButton ml-3"> Inicia sesión </b-button>
           <b-button href="/signUp" variant="light" class="registerButton ml-3"> Regístrate </b-button>
+        </div>
+        <div v-else>
+          <b-button variant="success">Diego</b-button>
         </div>
       </b-navbar-nav>
   </b-navbar>
 </template>
 
 <script>
+import { authComputed } from "../store/helpers";
 import sideBar from "@/components/sidebar.vue"
 export default {
   name: "Navbar",
@@ -24,6 +28,7 @@ export default {
     sideBar
   },
   computed: {
+    ...authComputed,
   },
   methods: {
   },

@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: 'Lobster', cursive, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', cursive, Helvetica, Arial, sans-serif;
   padding-top: 50px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
