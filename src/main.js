@@ -11,14 +11,11 @@ import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-import vmodal from 'vue-js-modal'
-Vue.use(vmodal)
-
 Vue.use(VueApollo);
 // HTTP connection to the API
 const httpLink = createHttpLink({
-  // You should use an absolute URL here
-  uri: `http://172.17.0.3:5000/graphql`
+    // You should use an absolute URL here
+    uri: `http://52.203.97.91:5000/graphql`
 });
 
 // Cache implementation
@@ -26,12 +23,12 @@ const cache = new InMemoryCache();
 
 // Create the apollo client
 const apolloClient = new ApolloClient({
-  link: httpLink,
-  cache
+    link: httpLink,
+    cache
 });
 
 const apolloProvider = new VueApollo({
-  defaultClient: apolloClient
+    defaultClient: apolloClient
 });
 
 Vue.use(BootstrapVue);
@@ -40,8 +37,8 @@ Vue.use(IconsPlugin);
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
-  store,
-  apolloProvider,
-  render: h => h(App)
+    router,
+    store,
+    apolloProvider,
+    render: h => h(App)
 }).$mount("#app");

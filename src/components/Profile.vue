@@ -38,14 +38,19 @@ export default {
     return {
       user: {
       },
-      name: "Cristian"
+      name: "Cristian",
+      currentUser: ""
     }
   },
   methods: {
     getUser: function() {
       console.log("WHen they're playing")
       this.$apollo.query({
-          query: GET_USER
+          query: GET_USER,
+          variables: {
+            token: this.currentUser.token
+          }
+
       }).then(res => {
         this.user = res.data.getUser
       }).catch(err => {
@@ -59,10 +64,9 @@ export default {
             fullname: this.user.fullname,
             username: this.user.username,
             email: this.user.email,
-
+            token: this.currentUser.token
           }
       }).then(res => {
-        // this.user = res.data.getUser
         console.log(res)
       }).catch(err => {
         console.log(err)
@@ -70,6 +74,13 @@ export default {
     }
   },
   created() {
+    if (localStorage.getItem("user")) {
+      try {
+        this.currentUser = JSON.parse(localStorage.getItem("user"));
+      } catch (e) {
+        localStorage.removeItem("user");
+      }
+    }
     this.getUser()
   }
 };
