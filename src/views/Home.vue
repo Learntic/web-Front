@@ -1,4 +1,5 @@
 <template>
+
   <div class="home">
     <div class="row">
       <div class="col-md-7">
@@ -7,6 +8,7 @@
       </div>
       <div class="col-md-4">
         <Profile></Profile>
+        <Achievements> </Achievements>
       </div>
     </div>
   </div>
@@ -19,13 +21,15 @@ import { authComputed } from "../store/helpers";
 import Profile from "@/components/Profile.vue";
 import allCourses from "@/components/allCourses.vue";
 import myCourses from "@/components/myCourses.vue";
+import Achievements from "@/components/Achievements.vue";
 
 export default {
   name: "Home",
   components: {
     allCourses,
     myCourses,
-    Profile
+    Profile,
+    Achievements
   },
   computed: {
     ...authComputed,
