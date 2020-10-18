@@ -1,20 +1,42 @@
 <template>
 
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div class="row">
+      <div class="col-md-7">
+        <myCourses></myCourses>
+        <allCourses></allCourses>
+      </div>
+      <div class="col-md-4">
+        <Profile></Profile>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 
-// @ is an alias to /src
-import HelloWorld from "@/components/Achievements.vue";
+import { mapState } from "vuex";
+import { authComputed } from "../store/helpers";
+import Profile from "@/components/Profile.vue";
+import allCourses from "@/components/allCourses.vue";
+import myCourses from "@/components/myCourses.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    allCourses,
+    myCourses,
+    Profile
+  },
+  computed: {
+    ...authComputed,
+  },
+  methods:{
+    beforeCreate(){
+      if( !localStorage.getItem("user") ){
+        this.$router.push( {name: 'Login'} )
+      }
+    },
   }
 };
 </script>
