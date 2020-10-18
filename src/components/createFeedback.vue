@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="createFeedback">
   <h3>Deja tu opinion sobre el curso</h3>
     <b-form @submit="onSubmit">
       <div class="row">
@@ -75,4 +75,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.createFeedback{
+  margin-top: 5%;
+  margin-left: 10%;
+}
+</style>

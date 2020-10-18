@@ -1,6 +1,8 @@
 <template>
   <b-navbar class="navbarPetSuite">
+    <div v-if="!loggedIn">
       <sideBar></sideBar>
+    </div>
       <b-navbar-brand href="/" class="learntic">
         Learntic
       </b-navbar-brand>
@@ -13,7 +15,7 @@
           <b-button href="/signUp" variant="light" class="registerButton ml-3"> Regístrate </b-button>
         </div>
         <div v-else>
-          <b-button variant="success">Diego</b-button>
+          <b-button variant="success">Cierra Sesión</b-button>
         </div>
       </b-navbar-nav>
   </b-navbar>

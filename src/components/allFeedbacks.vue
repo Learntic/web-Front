@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="allFeedBacks">
+    <h1> Opiniones </h1>
     <b-card v-for="item in feedbacks" :key="item.id" class="cardsFeedback">
       <div class="row">
         <div class="col-md-10">
@@ -61,9 +62,13 @@ export default {
 </script>
 
 <style scoped>
+.allFeedBacks{
+    margin-top: 5%;
+}
 .cardsFeedback {
   border: none;
   text-align: left;
   border-bottom: 1px solid #233a4d;
+  margin-left: 10%;
 }
 </style>

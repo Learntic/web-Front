@@ -4,7 +4,6 @@
       <div class="col-md-7">
     <h1>Curso {{ $route.params.id }}</h1>
     <topics></topics>
-    <h1> Opiniones </h1>
     <allFeedbacks></allFeedbacks>
       </div>
     </div>
