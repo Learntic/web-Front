@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="body">
     <h3>Mis cursos</h3>
+    <div class="cards mx-5 mb-5">
     <b-card v-for="item in courses" :key="item.id" class="card">
       <b-card-title>
         {{ item.course_name }}
@@ -15,6 +16,7 @@
         </div>
       </div>
     </b-card>
+    </div>
   </div>
 </template>
 
@@ -40,12 +42,11 @@ export default {
   },
   methods: {
     myCourses: async function() {
-        console.log(typeof(this.currentUser.username));
       await this.$apollo
         .query({
           query: COURSES_USER,
           variables:{
-            username: this.currentUser.username
+            username: this.currentUser.username,
           }
         })
         .then((res) => {
@@ -60,5 +61,33 @@ export default {
 <style scoped>
 .inscriptionButton {
   background: #323232;
+}
+.body {
+  margin-top: 3%;
+  height: auto;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  color: #063869;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 3px 3px 12px 2px rgba(black, 0.6);
+  transition: 0.2s;
+  margin-left: 1rem;
+}
+.card:not(:last-child):hover,
+.card:not(:last-child):focus-within {
+  transform: translateY(-1rem);
+  ~.card {
+    transform: translateX(2rem);
+  }
 }
 </style>

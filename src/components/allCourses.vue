@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Todos los cursos</h3>
-    <b-card v-for="item in courses" :key="item.id" class="card">
+    <b-card v-for="item in courses" :key="item.id" class="cardsAllCourses">
       <router-link :to="{ name: 'courseView', params: { id: item.course_id } }">
             <b-card-title> {{ item.course_name }} </b-card-title>
           </router-link>
@@ -57,13 +57,13 @@ export default {
           this.courses = res.data.allCourses
         });
     },
-    inscriptionCourse: async function(idCourse){
+    inscriptionCourse: async function(idCurrentCourse){
         await this.$apollo
         .mutate({
             mutation: COURSE_INSCRIPTION,
             variables: {
-            id_usuario: this.currentUser.username,
-            id_curso: idCourse,
+            username: this.currentUser.username,
+            idCourse: idCurrentCourse,
           }
         }).then((res) => {
           console.log(res.data);
@@ -76,5 +76,10 @@ export default {
 <style scoped>
 .inscriptionButton {
   background: #233a4d;
+}
+.cardsAllCourses{
+  text-align: left;
+  margin-left: 10%;
+  margin-top: 1%;
 }
 </style>

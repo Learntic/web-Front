@@ -1,10 +1,6 @@
 
 <template>
-  <div>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
+  <div class="achievement">
     <h1 class="title">Logros</h1>
     <div class="table-responsive text-nowrap">
       <table class="table">
@@ -31,17 +27,17 @@ import {ACHIEVEMENTS_BY_USERNAMES} from "../graphql/queries"
 export default {
   data() {
     return {
-      messages: ["hello", "vue", "js"],
-      userAchievements: []
+      userAchievements: [],
+      currentUser: {}
     };
   },
   methods: {
-    testApollo: function() {
+    getuserAchievements: function() {
       this.$apollo
         .query({
 		  query: ACHIEVEMENTS_BY_USERNAMES,
 		  variables: {
-			username: "Cristian"  
+			username: this.currentUser.username
 		  },
           fetchPolicy: "no-cache"
         })
@@ -52,7 +48,14 @@ export default {
     }
   },
   created() {
-    this.testApollo();
+    if (localStorage.getItem("user")) {
+      try {
+        this.currentUser = JSON.parse(localStorage.getItem("user"));
+      } catch (e) {
+        localStorage.removeItem("user");
+      }
+    }
+    this.userAchievements();
   }
 };
 </script>
@@ -60,6 +63,9 @@ export default {
 <style>
 .title {
   font-family: "Roboto", sans-serif;
+}
+.achievement{
+  margin-top: 10%;
 }
 </style>
 

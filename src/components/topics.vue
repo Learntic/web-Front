@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-card v-for="item in topics" :key="item.id" class="card">
-      <b-card-title> {{ item.topic_name }} </b-card-title>
+    <b-card v-for="item in topics" :key="item.id" class="cardsAllTopics">
+      <b-card-title> <strong> {{ item.topic_name }} </strong> </b-card-title>
       <b-card-text>
       {{item.topic_description}}
     </b-card-text>
@@ -39,4 +39,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.cardsAllTopics{
+  text-align: left;
+  margin-left: 10%;
+  margin-top: 1%;
+}
+</style>

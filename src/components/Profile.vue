@@ -43,14 +43,15 @@ export default {
     }
   },
   methods: {
-    getUser: function() {
-      console.log("WHen they're playing")
-      this.$apollo.query({
+    getUser: async function() {
+      console.log(this.currentUser.uid);
+      await this.$apollo.query({
           query: GET_USER,
           variables: {
-            token: this.currentUser.token
-          }
-
+            token: this.currentUser.token,
+            idUser: this.currentUser.uid
+          },
+          fetchPolicy: "no-cache"
       }).then(res => {
         this.user = res.data.getUser
       }).catch(err => {
@@ -109,6 +110,8 @@ a {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
   margin: auto;
+  margin-top: 10%;
+  padding: 5%;
   text-align: center;
 }
 
@@ -123,7 +126,7 @@ button {
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: #233a4d;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -145,6 +148,6 @@ img {
 }
 
 #edit-btn {
-  background: #2F5D71;
+  background: #233a4d;
 }
 </style>

@@ -45,6 +45,11 @@ export default {
 
 <style scoped>
 .learnticButton {
-    background: #233a4d;
+  background: #55B59B;
+  color: #233a4d;
+  border-style: none;
+}
+.learnticButton:hover{
+  background: #49917e;
 }
 </style>
