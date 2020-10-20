@@ -1,7 +1,7 @@
 
 <template>
   <div class="achievement">
-    <h1 class="title">Logros</h1>
+    <h3 class="title">Tus Logros</h3>
     <div class="table-responsive text-nowrap">
       <table class="table">
         <thead>
@@ -66,6 +66,6 @@ export default {
 }
 .achievement{
   margin-top: 10%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 </style>
-

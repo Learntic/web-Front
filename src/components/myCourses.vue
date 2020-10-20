@@ -1,8 +1,8 @@
 <template>
   <div class="body">
     <h3>Mis cursos</h3>
-    <div class="cards mx-5 mb-5">
-    <b-card v-for="item in courses" :key="item.id" class="card">
+    <div class="cards mx-1 mb-5">
+    <b-card v-for="item in myCoursesad" :key="item.id" class="card">
       <b-card-title>
         {{ item.course_name }}
       </b-card-title>
@@ -21,12 +21,13 @@
 </template>
 
 <script>
+import { EventBus } from '../event-bus';
 import { COURSES_USER } from "../graphql/queries";
 export default {
   name: "myCourses",
   data() {
     return {
-      courses: [],
+      myCoursesad: [],
       currentUser: ""
     };
   },
@@ -39,6 +40,9 @@ export default {
       }
     }
     this.myCourses();
+    EventBus.$on('courseAdd', (value) => {
+      this.myCoursesad.push(value);
+    })
   },
   methods: {
     myCourses: async function() {
@@ -51,7 +55,9 @@ export default {
         })
         .then((res) => {
           console.log(res.data.inscriptionByUserId);
-          this.courses= res.data.inscriptionByUserId;
+          this.myCoursesad= res.data.inscriptionByUserId;
+        }).catch((err)=>{
+          console.log(err);
         });
     },
   },
@@ -63,6 +69,7 @@ export default {
   background: #323232;
 }
 .body {
+  margin-left: 10%;
   margin-top: 3%;
   height: auto;
   display: grid;
@@ -75,19 +82,17 @@ export default {
   flex-wrap: wrap;
 }
 .card {
-  color: #063869;
+  border-color: #66A5FC;
   background-color: white;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 1.5rem;
-  box-shadow: 3px 3px 12px 2px rgba(black, 0.6);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.2s;
   margin-left: 1rem;
+  margin-top: 1rem;
 }
 .card:not(:last-child):hover,
 .card:not(:last-child):focus-within {
   transform: translateY(-1rem);
-  ~.card {
-    transform: translateX(2rem);
-  }
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="topics">
+    <h1>Temario</h1>
     <b-card v-for="item in topics" :key="item.id" class="cardsAllTopics">
       <b-card-title> <strong> {{ item.topic_name }} </strong> </b-card-title>
       <b-card-text>
@@ -44,5 +45,9 @@ export default {
   text-align: left;
   margin-left: 10%;
   margin-top: 1%;
+  border-color: #66A5FC;
+}
+.topics{
+  margin-top: 5%;
 }
 </style>

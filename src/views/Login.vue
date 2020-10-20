@@ -22,6 +22,11 @@ export default {
     LoginComponente,
     RegisterComponente,
   },
+  beforeCreate(){
+    if (localStorage.getItem("user")){
+      this.$router.push( {name: 'Home'} )
+    }
+  }
 };
 </script>
 
@@ -30,6 +35,6 @@ export default {
   /*background: linear-gradient(to right, #0f2027, #203a43, #2c5364);*/
   /*background: linear-gradient(to right, #ee9ca7, #ffdde1);*/
   /*background: linear-gradient(to right, #2193b0, #6dd5ed);*/
-  background: linear-gradient(to left, #4ac29a, #bdfff3);
+  background: linear-gradient(to left, #42DF90, #149e8e);
 }
 </style>

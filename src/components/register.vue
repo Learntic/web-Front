@@ -1,6 +1,9 @@
 <template>
   <div class="body">
     <div class="login">
+      <div class="col-md-12">
+          <h3>¿Aún no tienes una cuenta?</h3>
+          <h5>Créala aquí</h5>
       <b-form @submit.prevent="registerUser">
         <b-form-group id="input-group-1" label="Username:" label-for="input-1">
           <b-form-input
@@ -29,6 +32,7 @@
           Regístrate
         </b-button>
       </b-form>
+    </div>
     </div>
   </div>
 </template>

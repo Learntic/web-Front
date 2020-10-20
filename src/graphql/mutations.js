@@ -1,22 +1,22 @@
 import gql from 'graphql-tag'
 
 // USER-MS
-export const UPDATE_USER = gql`
-                mutation updateUser($fullname: String, $username: String, $email: String, $token: String!){
-                    updateUser( 
-                        token: $token, 
-                        id: "0x2", 
-                        user: {
-                            fullname: $fullname
-                            username: $username
-                            email: $email
+export const UPDATE_USER = gql `
+          mutation updateUser($fullname: String, $username: String, $email: String, $token: String!, $uid: String!){
+          updateUser( 
+              token: $token, 
+              id: $uid, 
+              user: {
+                  fullname: $fullname
+                  username: $username
+                  email: $email
 
-                    }) {
-                        fullname
-                        username
-                        email
-                    }
-                }`
+          }) {
+              fullname
+              username
+              email
+          }
+      }`
 
 //auth-ms
 
@@ -56,7 +56,7 @@ mutation deleteInscription($Id_inscription: Int){
 //Feedback-Ms
 
 export const CREATE_FEEDBACK = gql `
-mutation createFeedback($username: String!, $idCourse: Int!, $opinion: String!, $score: Int!, $userToken: String!){
+mutation createFeedback($username: String!, $idCourse: Int!, $opinion: String!, $score: Float!, $userToken: String!){
   createFeedback(feedback: {
     id_usuario: $username,
     id_curso: $idCourse,

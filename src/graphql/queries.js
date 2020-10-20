@@ -2,9 +2,9 @@ import gql from 'graphql-tag'
 
 // USER-MS
 export const GET_USER = gql `
-query getUser($token: String!, $idUser: String!) {
+query getUser($token: String!, $uid: String!) {
     getUser(
-        id: $idUser,
+        id: $uid,
         token: $token
     ){
       fullname

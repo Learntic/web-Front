@@ -2,7 +2,6 @@
   <div>
     <div class="row">
       <div class="col-md-7">
-    <h1>Curso {{ $route.params.id }}</h1>
     <topics></topics>
     <allFeedbacks></allFeedbacks>
       </div>

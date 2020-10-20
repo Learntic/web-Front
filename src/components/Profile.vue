@@ -4,7 +4,7 @@
     <h1>{{this.user.fullname}}</h1>
     <p class="title">{{this.user.email}}</p>
     <p>{{this.user.username}}</p>
-    <p><b-button id="edit-btn" @ok="editUser"  v-b-modal.my-modal>Edit</b-button></p>
+    <p><b-button id="edit-btn"  v-b-modal.my-modal>Edit</b-button></p>
     <div>
       <b-modal id="my-modal" ref="modal" title="Edit your info" @ok="editUser">
       <form ref="form" @submit.stop.prevent="handleSubmit">
@@ -21,7 +21,6 @@
     </b-modal>
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -44,12 +43,11 @@ export default {
   },
   methods: {
     getUser: async function() {
-      console.log(this.currentUser.uid);
       await this.$apollo.query({
           query: GET_USER,
           variables: {
             token: this.currentUser.token,
-            idUser: this.currentUser.uid
+            uid: this.currentUser.uid
           },
           fetchPolicy: "no-cache"
       }).then(res => {
@@ -65,7 +63,8 @@ export default {
             fullname: this.user.fullname,
             username: this.user.username,
             email: this.user.email,
-            token: this.currentUser.token
+            token: this.currentUser.token,
+            uid: this.currentUser.uid
           }
       }).then(res => {
         console.log(res)

@@ -12,10 +12,9 @@
       <b-navbar-nav class="ml-auto">
         <div v-if="!loggedIn">
           <b-button href="/login" class="loginButton ml-3"> Inicia sesión </b-button>
-          <b-button href="/signUp" variant="light" class="registerButton ml-3"> Regístrate </b-button>
         </div>
         <div v-else>
-          <b-button class="logoutButton">Cierra Sesión</b-button>
+          <b-button class="logoutButton" @click="logout" >Cierra Sesión</b-button>
         </div>
       </b-navbar-nav>
   </b-navbar>
@@ -33,6 +32,10 @@ export default {
     ...authComputed,
   },
   methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push( {name: 'Login'} )
+    },
   },
 };
 </script>
