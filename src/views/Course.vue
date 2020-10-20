@@ -5,12 +5,12 @@
         <topics></topics>
         <allFeedbacks></allFeedbacks>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-5">
         <div v-if="!loggedIn">
           <AllCourses></AllCourses>
         </div>
         <div v-else>
-          <NotMyCourses mensaje="Hoy puedes aprender más"></NotMyCourses>
+          <NotMyCourses class="notMyCourses" mensaje="Hoy puedes aprender más"></NotMyCourses>
         </div>
       </div>
     </div>
@@ -37,4 +37,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+</style>

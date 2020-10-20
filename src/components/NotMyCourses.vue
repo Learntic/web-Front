@@ -58,9 +58,11 @@ export default {
           variables: {
             id: this.currentUser.username
           },
+          fetchPolicy: "no-cache"
         })
         .then((res) => {
           this.courses = res.data.coursesByNotUserId;
+          
         }). catch((err)=>{
           console.log(err);
         });
@@ -92,7 +94,10 @@ export default {
 .allCourses{
   margin-top: 5%;
   margin-bottom: 10%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-left:10%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  padding-right:10%;
 }
 .cardsAllCourses{
   text-align: left;
