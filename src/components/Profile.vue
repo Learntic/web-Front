@@ -4,7 +4,7 @@
     <h1>{{this.user.fullname}}</h1>
     <p class="title">{{this.user.email}}</p>
     <p>{{this.user.username}}</p>
-    <p><b-button id="edit-btn" @ok="editUser"  v-b-modal.my-modal>Edit</b-button></p>
+    <p><b-button id="edit-btn"  v-b-modal.my-modal>Edit</b-button></p>
     <div>
       <b-modal id="my-modal" ref="modal" title="Edit your info" @ok="editUser">
       <form ref="form" @submit.stop.prevent="handleSubmit">
@@ -21,7 +21,6 @@
     </b-modal>
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -43,14 +42,14 @@ export default {
     }
   },
   methods: {
-    getUser: function() {
-      console.log("WHen they're playing")
-      this.$apollo.query({
+    getUser: async function() {
+      await this.$apollo.query({
           query: GET_USER,
           variables: {
-            token: this.currentUser.token
-          }
-
+            token: this.currentUser.token,
+            uid: this.currentUser.uid
+          },
+          fetchPolicy: "no-cache"
       }).then(res => {
         this.user = res.data.getUser
       }).catch(err => {
@@ -64,7 +63,8 @@ export default {
             fullname: this.user.fullname,
             username: this.user.username,
             email: this.user.email,
-            token: this.currentUser.token
+            token: this.currentUser.token,
+            uid: this.currentUser.uid
           }
       }).then(res => {
         console.log(res)
@@ -109,6 +109,8 @@ a {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
   margin: auto;
+  margin-top: 10%;
+  padding: 5%;
   text-align: center;
 }
 
@@ -123,7 +125,7 @@ button {
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: #233a4d;
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -145,6 +147,6 @@ img {
 }
 
 #edit-btn {
-  background: #2F5D71;
+  background: #233a4d;
 }
 </style>

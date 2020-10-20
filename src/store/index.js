@@ -14,11 +14,18 @@ export default new Vuex.Store({
             state.user = userData;
             localStorage.setItem("user", JSON.stringify(userData));
         },
+        CLEAR_USER_DATA(state) {
+            state.user = null;
+            localStorage.removeItem('user');
+        },
     },
     actions: {
         login({ commit }, credentials) {
             console.log(credentials);
             commit("SET_USER_DATA", credentials);
+        },
+        logout({ commit }) {
+            commit('CLEAR_USER_DATA');
         },
     },
     modules: {},
