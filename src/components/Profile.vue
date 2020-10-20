@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img src="@/assets/learntic.png" alt="John" style="width:100%">
+    <img src="@/assets/learntic.png" style="width:100%">
     <h1>{{this.user.fullname}}</h1>
     <p class="title">{{this.user.email}}</p>
     <p>{{this.user.username}}</p>
@@ -31,14 +31,10 @@ import {UPDATE_USER} from "../graphql/mutations"
 
 export default {
   name: "Profile",
-  props: {
-    msg: String
-  },
   data() {
     return {
       user: {
       },
-      name: "Cristian",
       currentUser: ""
     }
   },

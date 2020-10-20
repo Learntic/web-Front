@@ -15,6 +15,36 @@ query getUser($token: String!) {
     }
 }`
 
+export const GET_FRIENDS = gql`
+query myFriends($uid: String!, $token: String!) {
+    myFriends(
+        id: $uid,
+        token: $token
+        ){
+        uid
+        fullname
+        username
+        email
+        age
+        error
+    }
+}`
+
+export const GET_NOT_MY_FRIENDS = gql`
+query notMyFriends($uid: String!, $token: String!) {
+    notMyFriends(
+        id: $uid,
+        token: $token
+        ){
+        uid
+        fullname
+        username
+        email
+        age
+        error
+    }
+}`
+
 // AUTH-MS
 
 export const SIGN_IN = gql`

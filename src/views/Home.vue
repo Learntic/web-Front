@@ -1,5 +1,4 @@
 <template>
-
   <div class="home">
     <div class="row">
       <div class="col-md-7">
