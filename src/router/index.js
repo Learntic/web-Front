@@ -3,7 +3,9 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import courseView from "../views/Course.vue";
+import myCourseView from "../views/MyCourse.vue";
 import UnityView from "../views/Unity.vue";
+import TopicsView from "../views/TopicsView.vue";
 
 Vue.use(VueRouter);
 
@@ -23,6 +25,11 @@ const routes = [{
         component: UnityView
     },
     {
+        path: "/course/topic/:id",
+        name: "TopicView",
+        component: TopicsView
+    },
+    {
         path: "/about",
         name: "About",
         // route level code-splitting
@@ -36,6 +43,12 @@ const routes = [{
         path: '/course/:id',
         name: 'courseView',
         component: courseView
+    },
+    {
+        //Ruta para ver todo un curso
+        path: '/mycourse/:id',
+        name: 'myCourseView',
+        component: myCourseView
     }
 ];
 

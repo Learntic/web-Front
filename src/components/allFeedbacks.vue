@@ -19,11 +19,14 @@
         </div>
       </div>
     </b-card>
+    <div v-if="loggedIn">
     <CreateFeedback></CreateFeedback>
+    </div>
   </div>
 </template>
 
 <script>
+import { authComputed } from "../store/helpers";
 import { FEEDBACKS_COURSE } from "../graphql/queries";
 import CreateFeedback from "@/components/createFeedback.vue";
 import {EventBus} from "../event-bus"
@@ -37,6 +40,9 @@ export default {
   },
   components: {
     CreateFeedback,
+  },
+  computed: {
+    ...authComputed,
   },
   created() {
     this.feedbacksByCourse();

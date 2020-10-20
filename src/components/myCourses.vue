@@ -3,18 +3,14 @@
     <h3>Mis cursos</h3>
     <div class="cards mx-1 mb-5">
     <b-card v-for="item in myCoursesad" :key="item.id" class="card">
+      <router-link :to="{ name: 'courseView', params: { id: item.course_id } }">
       <b-card-title>
         {{ item.course_name }}
       </b-card-title>
-      <div class="row">
-        <div class="col-md-8">
+      </router-link>
           <b-card-text>
             {{ item.course_description }}
           </b-card-text>
-        </div>
-        <div class="col-md-4">
-        </div>
-      </div>
     </b-card>
     </div>
   </div>
@@ -54,8 +50,7 @@ export default {
           }
         })
         .then((res) => {
-          console.log(res.data.inscriptionByUserId);
-          this.myCoursesad= res.data.inscriptionByUserId;
+          this.myCoursesad= res.data.coursesByUserId ;
         }).catch((err)=>{
           console.log(err);
         });
@@ -80,19 +75,20 @@ export default {
 .cards {
   display: flex;
   flex-wrap: wrap;
+  text-align: left;
+  
 }
 .card {
   border-color: #66A5FC;
   background-color: white;
   border-radius: 0.5rem;
-  padding: 1.5rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.2s;
-  margin-left: 1rem;
   margin-top: 1rem;
+  width: 95% ;
 }
 .card:not(:last-child):hover,
 .card:not(:last-child):focus-within {
-  transform: translateY(-1rem);
+  transform: translateX(1rem);
 }
 </style>

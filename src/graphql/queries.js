@@ -74,36 +74,53 @@ query courseTopics($idCourse: Int!) {
 
 export const COURSES_USER = gql `
 query inscriptionByUserId($username: String!){
-  inscriptionByUserId(id: $username)
+  coursesByUserId(id:$username){
+    course_id
+    course_description
+    course_name
+  }
 }`
+
+export const NOT_COURSES_BY_USER_ID = gql `
+query coursesByNotUserId($id: String!){
+  coursesByNotUserId(id:$id){
+    course_id
+    course_description
+    course_name
+    course_score
+  }
+} `
 
 //Feedback-Ms
 
 export const FEEDBACKS_COURSE = gql `
-query feedbackByCourse($idCourse: Int!){
-  feedbackByCourse(id_curso: $idCourse) {
-    id
-    id_usuario
-    id_curso
-    opinion
-    nota
-  }
-}`
+query feedbackByCourse($idCourse: Int!) {
+    feedbackByCourse(id_curso: $idCourse) {
+        id
+        id_usuario
+        id_curso
+        opinion
+        nota
+    }
+}
+`
 
 export const SCORE_COURSE = gql `
-query ($idCourse: Int!){
-  feedbackScore(id_curso: $idCourse)
-}`
+query($idCourse: Int!) {
+    feedbackScore(id_curso: $idCourse)
+}
+`
 
 //Achievements_MS
 
 export const ACHIEVEMENTS_BY_USERNAMES = gql `
-query GetAchievementsByUsernames($username: String!){
-  GetAchievementsByUsernames(names :[$username]){
-    username
-    achievements {
-        name
-        description
-    } 
-  } 
-}`
+query GetAchievementsByUsernames($username: String!) {
+    GetAchievementsByUsernames(names: [$username]) {
+        username
+        achievements {
+            name
+            description
+        }
+    }
+}
+`

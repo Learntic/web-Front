@@ -2,52 +2,67 @@
   <div class="topics">
     <h1>Temario</h1>
     <b-card v-for="item in topics" :key="item.id" class="cardsAllTopics">
-      <b-card-title> <strong> {{ item.topic_name }} </strong> </b-card-title>
+      <div v-if="loggedIn">
+        <router-link :to="{ name: 'TopicView', params: { id: item.topic_id } }">
+          <b-card-title>
+            <strong> {{ item.topic_name }} </strong>
+          </b-card-title>
+        </router-link>
+      </div>
+      <div v-else>
+          <b-card-title>
+            <strong> {{ item.topic_name }} </strong>
+          </b-card-title>
+      </div>
       <b-card-text>
-      {{item.topic_description}}
-    </b-card-text>
+        {{ item.topic_description }}
+      </b-card-text>
     </b-card>
   </div>
 </template>
 
 <script>
 import { COURSE_TOPICS } from "../graphql/queries";
+import { authComputed } from "../store/helpers";
 export default {
   name: "topic",
   data() {
     return {
       topics: [],
-      currentCourse: parseInt(this.$route.params.id)
+      currentCourse: parseInt(this.$route.params.id),
     };
+  },
+  computed: {
+    ...authComputed,
   },
   created() {
     this.allTopics();
   },
   methods: {
-      allTopics: async function() {
+    allTopics: async function() {
       await this.$apollo
         .query({
           query: COURSE_TOPICS,
           variables: {
-            idCourse: this.currentCourse
-          }
+            idCourse: this.currentCourse,
+          },
         })
         .then((res) => {
           this.topics = res.data.courseTopics;
         });
     },
-  }
+  },
 };
 </script>
 
 <style scoped>
-.cardsAllTopics{
+.cardsAllTopics {
   text-align: left;
   margin-left: 10%;
   margin-top: 1%;
-  border-color: #66A5FC;
+  border-color: #66a5fc;
 }
-.topics{
+.topics {
   margin-top: 5%;
 }
 </style>
