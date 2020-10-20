@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import courseView from "../views/Course.vue";
-import myCourseView from "../views/MyCourse.vue";
 import UnityView from "../views/Unity.vue";
 import TopicsView from "../views/TopicsView.vue";
 
@@ -44,12 +43,6 @@ const routes = [{
         name: 'courseView',
         component: courseView
     },
-    {
-        //Ruta para ver todo un curso
-        path: '/mycourse/:id',
-        name: 'myCourseView',
-        component: myCourseView
-    }
 ];
 
 const router = new VueRouter({
