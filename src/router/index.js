@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import courseView from "../views/Course.vue";
 import UnityView from "../views/Unity.vue";
+import Friends from "../views/Friends.vue";
 import TopicsView from "../views/TopicsView.vue";
 
 Vue.use(VueRouter);
@@ -42,6 +43,11 @@ const routes = [{
         path: '/course/:id',
         name: 'courseView',
         component: courseView
+    },
+    {
+        path: "/friends",
+        name: "Friends",
+        component: Friends
     },
 ];
 
