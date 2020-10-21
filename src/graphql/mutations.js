@@ -70,7 +70,7 @@ mutation deleteInscription($Id_inscription: Int){
 //Feedback-Ms
 
 export const CREATE_FEEDBACK = gql`
-mutation createFeedback($username: String!, $idCourse: Int!, $opinion: String!, $score: Int!, $userToken: String!){
+mutation createFeedback($username: String!, $idCourse: Int!, $opinion: String!, $score: Float!, $userToken: String!){
   createFeedback(feedback: {
     id_usuario: $username,
     id_curso: $idCourse,
