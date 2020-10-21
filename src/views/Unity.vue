@@ -7,9 +7,6 @@
       :height="600"
       ref="unityInstance"
     ></unity>
-    <div>
-      <button v-on:click="testUnity()"> Test </button>
-    </div>
   </div>
 </template>
 
