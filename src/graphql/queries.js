@@ -1,17 +1,17 @@
 import gql from 'graphql-tag'
 
 // USER-MS
-export const GET_USER = gql`
-query getUser($token: String!) {
+export const GET_USER = gql `
+query getUser($token: String!, $uid: String!) {
     getUser(
-        id: "0x2",
+        id: $uid,
         token: $token
-        ){
-        fullname
-        username
-        email
-        age
-        error
+    ){
+      fullname
+      username
+      email
+      age
+      error
     }
 }`
 
@@ -47,7 +47,7 @@ query notMyFriends($uid: String!, $token: String!) {
 
 // AUTH-MS
 
-export const SIGN_IN = gql`
+export const SIGN_IN = gql `
 query signIn($username: String!, $password: String!) {
   signIn(
     account: {
@@ -57,9 +57,10 @@ query signIn($username: String!, $password: String!) {
     {
       username
       token
+      uid
     }
   }`
-export const AUTH = gql`
+export const AUTH = gql `
 query auth($token: String!){
   auth(
     token: {
@@ -69,16 +70,17 @@ query auth($token: String!){
 `
 
 //Cursos-Ms
-export const ALL_COURSES = gql`
+export const ALL_COURSES = gql `
 query{
   allCourses{
     course_id
     course_description
     course_name
+    course_score
   }
 }`
 
-export const COURSE_SEARCH = gql`
+export const COURSE_SEARCH = gql `
 query searchCourse($cadena: String!){
   searchCourse(
     curso:{
@@ -91,7 +93,7 @@ query searchCourse($cadena: String!){
     }
 }`
 
-export const COURSE_TOPICS = gql`
+export const COURSE_TOPICS = gql `
 query courseTopics($idCourse: Int!) {
   courseTopics(idCurso: {entero: $idCourse}){
     topic_id
@@ -100,43 +102,55 @@ query courseTopics($idCourse: Int!) {
     }
   }`
 
-export const COURSES_USER = gql`
+export const COURSES_USER = gql `
 query inscriptionByUserId($username: String!){
-  inscriptionByUserId(id: $username){
-    id_usuario
-    id
-    id_curso
-    max_activity
+  coursesByUserId(id:$username){
+    course_id
+    course_description
+    course_name
   }
 }`
+
+export const NOT_COURSES_BY_USER_ID = gql `
+query coursesByNotUserId($id: String!){
+  coursesByNotUserId(id:$id){
+    course_id
+    course_description
+    course_name
+    course_score
+  }
+} `
 
 //Feedback-Ms
 
-export const FEEDBACKS_COURSE = gql`
-query feedbackByCourse($idCourse: Int!){
-  feedbackByCourse(id_curso: $idCourse) {
-    id
-    id_usuario
-    id_curso
-    opinion
-    nota
-  }
-}`
+export const FEEDBACKS_COURSE = gql `
+query feedbackByCourse($idCourse: Int!) {
+    feedbackByCourse(id_curso: $idCourse) {
+        id
+        id_usuario
+        id_curso
+        opinion
+        nota
+    }
+}
+`
 
-export const SCORE_COURSE = gql`
-query ($idCourse: Int!){
-  feedbackScore(id_curso: $idCourse)
-}`
+export const SCORE_COURSE = gql `
+query($idCourse: Int!) {
+    feedbackScore(id_curso: $idCourse)
+}
+`
 
 //Achievements_MS
 
-export const ACHIEVEMENTS_BY_USERNAMES = gql`
-query GetAchievementsByUsernames($username: String!){
-  GetAchievementsByUsernames(names :[$username]){
-    username
-    achievements {
-        name
-        description
-    } 
-  } 
-}`
+export const ACHIEVEMENTS_BY_USERNAMES = gql `
+query GetAchievementsByUsernames($username: String!) {
+    GetAchievementsByUsernames(names: [$username]) {
+        username
+        achievements {
+            name
+            description
+        }
+    }
+}
+`

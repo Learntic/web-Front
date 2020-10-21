@@ -1,22 +1,22 @@
 import gql from 'graphql-tag'
 
 // USER-MS
-export const UPDATE_USER = gql`
-                mutation updateUser($fullname: String, $username: String, $email: String, $token: String!){
-                    updateUser( 
-                        token: $token, 
-                        id: "0x2", 
-                        user: {
-                            fullname: $fullname
-                            username: $username
-                            email: $email
+export const UPDATE_USER = gql `
+          mutation updateUser($fullname: String, $username: String, $email: String, $token: String!, $uid: String!){
+          updateUser( 
+              token: $token, 
+              id: $uid, 
+              user: {
+                  fullname: $fullname
+                  username: $username
+                  email: $email
 
-                    }) {
-                        fullname
-                        username
-                        email
-                    }
-                }`
+          }) {
+              fullname
+              username
+              email
+          }
+      }`
 
 export const ADD_FRIEND = gql`
                 mutation addFriend($from: String!, $to: String!, $token: String!){

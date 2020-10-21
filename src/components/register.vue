@@ -1,35 +1,46 @@
 <template>
   <div class="body">
     <div class="login">
-      <b-form @submit.prevent="registerUser">
-        <b-form-group id="input-group-1" label="Username:" label-for="input-1">
-          <b-form-input
-            id="input-1"
-            v-model="user"
-            required
-            placeholder="Ingresa tu Username"
-          ></b-form-input>
-        </b-form-group>
+      <div class="col-md-12">
+        <h3>¿Aún no tienes una cuenta?</h3>
+        <h5>Créala aquí</h5>
+        <b-form @submit.prevent="registerUser">
+          <b-form-group
+            id="input-group-1"
+            label="Username:"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              v-model="user"
+              required
+              placeholder="Ingresa tu Username"
+            ></b-form-input>
+          </b-form-group>
 
-        <b-form-group
-          id="input-group-2"
-          label="Tu contraseña:"
-          label-for="input-2"
-        >
-          <b-form-input
-            id="input-2"
-            v-model="password"
-            required
-            placeholder="Ingresa una contraseña"
-            type="password"
-          ></b-form-input>
-        </b-form-group>
+          <b-form-group
+            id="input-group-2"
+            label="Tu contraseña:"
+            label-for="input-2"
+          >
+            <b-form-input
+              id="input-2"
+              v-model="password"
+              required
+              placeholder="Ingresa una contraseña"
+              type="password"
+            ></b-form-input>
+          </b-form-group>
 
-        <b-button block pill type="submit" class="loginButton">
-          Regístrate
-        </b-button>
-      </b-form>
+          <b-button block pill type="submit" class="loginButton">
+            Regístrate
+          </b-button>
+        </b-form>
+      </div>
     </div>
+    <b-modal ok-only v-model="show" size="sm" @ok="handleOk">
+      <p class="my-4">Felicidades ya estás en Learntic</p>
+    </b-modal>
   </div>
 </template>
 
@@ -41,12 +52,16 @@ export default {
     return {
       user: "",
       password: "",
+      show: false
     };
   },
   methods: {
+    handleOk: function(){
+      this.$router.push({ name: "Home" });
+    },
     registerUser: async function() {
       await this.$apollo
-        .mutate ({
+        .mutate({
           mutation: SIGN_UP,
           variables: {
             username: this.user,
@@ -54,7 +69,9 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          this.show = true
+        }).catch((err)=>{
+          console.log(err);
         });
     },
   },

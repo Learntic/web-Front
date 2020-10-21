@@ -1,6 +1,6 @@
 <template>
-  <b-navbar class="navbarPetSuite">
-    <div v-if="!loggedIn">
+  <b-navbar toggleable="lg" type="dark" class="navbarLearntic">
+    <div v-if="loggedIn">
       <sideBar></sideBar>
     </div>
       <b-navbar-brand href="/" class="learntic">
@@ -12,10 +12,9 @@
       <b-navbar-nav class="ml-auto">
         <div v-if="!loggedIn">
           <b-button href="/login" class="loginButton ml-3"> Inicia sesión </b-button>
-          <b-button href="/signUp" variant="light" class="registerButton ml-3"> Regístrate </b-button>
         </div>
         <div v-else>
-          <b-button variant="success">Cierra Sesión</b-button>
+          <b-button class="logoutButton" @click="logout" >Cierra Sesión</b-button>
         </div>
       </b-navbar-nav>
   </b-navbar>
@@ -33,15 +32,17 @@ export default {
     ...authComputed,
   },
   methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push( {name: 'Login'} )
+    },
   },
 };
 </script>
 
 <style scoped>
-.learntic{
-    text-emphasis-color: white;
-}
-.navbarPetSuite {
+.navbarLearntic {
+  font-family: 'Lobster', cursive;
   border-style: none;
   background: #233a4d;
   position: fixed;
@@ -60,7 +61,11 @@ export default {
   border-width: 2px;
 }
 .logoutButton{
-  background: #ff5f6d;
+  background: #55B59B;
+  border-style: none;
+}
+.logoutButton:hover{
+  background: #49917e;
   border-style: none;
 }
 .perfilButton{

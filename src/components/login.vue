@@ -1,33 +1,44 @@
 <template>
   <div class="body">
     <div class="login">
-      <b-form @submit.prevent="loginUsuario">
-        <b-form-group id="input-group-1" label="Username:" label-for="input-1">
-          <b-form-input
-            id="input-1"
-            v-model="user"
-            required
-            placeholder="Ingresa tu Username"
-          ></b-form-input>
-        </b-form-group>
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Ya tienes una cuenta!</h3>
+          <h5>Ingresa aquí</h5>
+          <b-form @submit.prevent="loginUsuario">
+            <b-form-group
+              id="input-group-1"
+              label="Username:"
+              label-for="input-1"
+            >
+              <b-form-input
+                id="input-1"
+                v-model="user"
+                required
+                placeholder="Ingresa tu Username"
+              ></b-form-input>
+            </b-form-group>
 
-        <b-form-group
-          id="input-group-2"
-          label="Tu contraseña:"
-          label-for="input-2"
-        >
-          <b-form-input
-            id="input-2"
-            v-model="password"
-            required
-            placeholder="Ingresa una contraseña"
-            type="password"
-          ></b-form-input>
-        </b-form-group>
+            <b-form-group
+              id="input-group-2"
+              label="Tu contraseña:"
+              label-for="input-2"
+            >
+              <b-form-input
+                id="input-2"
+                v-model="password"
+                required
+                placeholder="Ingresa una contraseña"
+                type="password"
+              ></b-form-input>
+            </b-form-group>
 
-        <b-button block pill type="submit" class="loginButton"> Ingresa </b-button>
-      </b-form>
-    
+            <b-button block pill type="submit" class="loginButton">
+              Ingresa
+            </b-button>
+          </b-form>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -77,7 +88,7 @@ export default {
   border-radius: 5px;
   background-color: white;
 }
-.loginButton{
-    background-color: #233a4d;
+.loginButton {
+  background-color: #233a4d;
 }
 </style>
