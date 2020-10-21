@@ -38,8 +38,8 @@
         </b-form>
       </div>
     </div>
-    <b-modal ok-only v-model="show" size="sm" @ok="handleOk">
-      <p class="my-4">Felicidades ya estás en Learntic</p>
+    <b-modal ok-only v-model="show" size="sm">
+      <p class="my-4">{{mensaje}}</p>
     </b-modal>
   </div>
 </template>
@@ -52,13 +52,11 @@ export default {
     return {
       user: "",
       password: "",
-      show: false
+      show: false,
+      mensaje: ""
     };
   },
   methods: {
-    handleOk: function(){
-      this.$router.push({ name: "Home" });
-    },
     registerUser: async function() {
       await this.$apollo
         .mutate({
@@ -70,8 +68,10 @@ export default {
         })
         .then((res) => {
           this.show = true
+          this.mensaje = "Felicitaciones ya estás en learntic"
         }).catch((err)=>{
-          console.log(err);
+          this.show = true
+          this.mensaje = "El Usuario ya existe"
         });
     },
   },
