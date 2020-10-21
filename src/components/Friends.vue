@@ -32,7 +32,7 @@ export default {
         .query({
           query: GET_FRIENDS,
           variables: {
-            uid: "0x2711",
+            uid: this.currentUser.uid,
             token: this.currentUser.token
           }
         })

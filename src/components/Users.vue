@@ -37,9 +37,10 @@ export default {
         .query({
           query: GET_NOT_MY_FRIENDS,
           variables: {
-            uid: "0x2711",
+            uid: this.currentUser.uid,
             token: this.currentUser.token
-          }
+          },
+          fetchPolicy: "no-cache"
         })
         .then(res => {
           this.users = res.data.notMyFriends;
@@ -54,10 +55,10 @@ export default {
         .mutate({
           mutation: ADD_FRIEND,
           variables: {
-            from: "0x2711",
+            from: this.currentUser.uid,
             to: uid,
             token: this.currentUser.token
-          }
+          },
         })
         .then(res => {
           console.log(res.data);
