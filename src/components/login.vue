@@ -40,6 +40,9 @@
         </div>
       </div>
     </div>
+    <b-modal ok-only v-model="show" size="sm">
+      <p class="my-4">Tu usuario y contraseña no coinciden</p>
+    </b-modal>
   </div>
 </template>
 
@@ -51,6 +54,7 @@ export default {
     return {
       user: "",
       password: "",
+      show: false,
     };
   },
   methods: {
@@ -64,9 +68,10 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data.signIn);
           this.$store.dispatch("login", res.data.signIn);
           this.$router.push({ name: "Home" });
+        }).catch((err)=>{
+          this.show = true;
         });
     },
   },
