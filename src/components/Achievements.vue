@@ -32,7 +32,7 @@ export default {
     };
   },
   methods: {
-    getuserAchievements: function() {
+    getUserAchievements: function() {
       this.$apollo
         .query({
 		  query: ACHIEVEMENTS_BY_USERNAMES,
@@ -55,7 +55,7 @@ export default {
         localStorage.removeItem("user");
       }
     }
-    this.userAchievements();
+    this.getUserAchievements();
   }
 };
 </script>

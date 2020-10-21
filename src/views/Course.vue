@@ -20,7 +20,7 @@
 <script>
 import { authComputed } from "../store/helpers";
 import topics from "@/components/topics.vue";
-import AllCourses from "@/components/AllCourses.vue";
+import AllCourses from "@/components/allCourses.vue";
 import NotMyCourses from "@/components/NotMyCourses.vue";
 import allFeedbacks from "@/components/allFeedbacks.vue";
 export default {
