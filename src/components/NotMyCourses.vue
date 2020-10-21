@@ -76,7 +76,8 @@ export default {
             idCourse: idCurrentCourse,
           }
         }).then((res) => {
-          EventBus.$emit('courseAdd', this.courses[idCurrentCourse-1]);
+          let course = this.courses.filter((course)=> course.course_id == idCurrentCourse)
+          EventBus.$emit('courseAdd', course[0]);
           this.courses = this.courses.filter((course)=>
             course.course_id != idCurrentCourse);
         }).catch((err)=>{
