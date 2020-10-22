@@ -62,6 +62,7 @@ export default {
           variables: {
             idCourse: this.currentCourse,
           },
+          fetchPolicy: "no-cache"
         })
         .then((res) => {
           this.feedbacks = res.data.feedbackByCourse;
