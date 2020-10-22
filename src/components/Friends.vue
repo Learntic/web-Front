@@ -17,6 +17,7 @@
 <script>
 import { GET_FRIENDS } from "../graphql/queries";
 import { UPDATE_USER } from "../graphql/mutations";
+import {EventBus} from "../event-bus"
 
 export default {
   name: "Friends",
@@ -54,6 +55,9 @@ export default {
       }
     }
     this.getFriends();
+    EventBus.$on('addFriend', (friend) => {
+      this.friends.push(friend)
+    })
   }
 };
 </script>

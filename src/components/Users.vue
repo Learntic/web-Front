@@ -22,6 +22,7 @@
 <script>
 import { GET_NOT_MY_FRIENDS } from "../graphql/queries";
 import { ADD_FRIEND } from "../graphql/mutations";
+import {EventBus} from "../event-bus"
 
 export default {
   name: "Friends",
@@ -61,7 +62,10 @@ export default {
           },
         })
         .then(res => {
-          console.log(res.data);
+          let friend = this.users.filter(user => user.uid == uid)
+          EventBus.$emit('addFriend', friend[0]);
+          this.users = this.users.filter((user)=>
+            user.uid != uid);
         })
         .catch(err => {
           console.log(err);
