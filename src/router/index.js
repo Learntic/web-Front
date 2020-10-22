@@ -20,8 +20,8 @@ const routes = [{
         component: Login
     },
     {
-        path: "/unity",
-        name: "unity",
+        path: "/unity/:id",
+        name: "Unity",
         component: UnityView
     },
     {

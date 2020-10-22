@@ -96,9 +96,10 @@ query searchCourse($cadena: String!){
 export const COURSE_TOPICS = gql `
 query courseTopics($idCourse: Int!) {
   courseTopics(idCurso: {entero: $idCourse}){
-    topic_id
-    topic_description
-    topic_name
+      topic_id
+      topic_description
+      topic_name
+      topic_url
     }
   }`
 

@@ -3,6 +3,11 @@
     <div class="row">
       <div class="col-md-7">
         <topics></topics>
+        <router-link :to="{ name: 'Unity', params: { id: $route.params.id }}">
+          <b-button class="btn" block v-on:click="goToUnity()">
+              Ir a la evaluación
+          </b-button>
+        </router-link>
         <allFeedbacks></allFeedbacks>
       </div>
       <div class="col-md-5">
@@ -34,8 +39,19 @@ export default {
   computed: {
     ...authComputed,
   },
+  methods: {
+    goToUnity: function() {
+      console.log("hey")
+    }
+  }
 };
 </script>
 
 <style scoped>
+.btn {
+  background: #233a4d;
+  margin-left: 5%;
+  margin-top: 1%;
+}
+
 </style>

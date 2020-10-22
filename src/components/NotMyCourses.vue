@@ -3,8 +3,8 @@
     <h3>{{mensaje}}</h3>
     <b-card v-for="item in courses" :key="item.id" class="cardsAllCourses">
       <router-link :to="{ name: 'courseView', params: { id: item.course_id } }">
-            <b-card-title> {{ item.course_name }} </b-card-title>
-          </router-link>
+          <b-card-title> {{ item.course_name }} </b-card-title>
+      </router-link>
       <div class="row">
         <div class="col-md-8">
           <b-card-text>

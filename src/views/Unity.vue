@@ -1,8 +1,8 @@
 <template>
   <div>
     <unity
-      :src="unitySrc"
-      :unityLoader="unityLoader"
+      :src="unityConfig[$route.params.id-1].unitySrc"
+      :unityLoader="unityConfig[$route.params.id-1].unityLoader"
       :width="1000"
       :height="600"
       ref="unityInstance"
@@ -18,8 +18,16 @@ export default {
   },
   data() {
     return {
-      unitySrc: "/AppsDrop/Build/AppsDrop.json",
-      unityLoader: "/AppsDrop/Build/UnityLoader.js",
+      unityConfig : [
+        {
+          unitySrc: "/InternetApp/Build/InternetApp.json",
+          unityLoader: "/InternetApp/Build/UnityLoader.js",
+        },
+        {
+          unitySrc: "/AppsDrop/Build/AppsDrop.json",
+          unityLoader: "/AppsDrop/Build/UnityLoader.js",
+        }
+      ],
       currentUser: ""
     };
   },
@@ -38,6 +46,7 @@ export default {
     }
     setTimeout(() => {this.unityHandler()}, 2500)
     this.unityHandler();
+    console.log(this.$route.params.id)
   }
 };
 </script>
