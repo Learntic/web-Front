@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <div id="card-title" class="col-md-8">
-          <button v-on:click="addFriend(item.uid)">Agregar</button>
+          <b-button class="btn" v-on:click="addFriend(item.uid)">Agregar</b-button>
         </div>
       </div>
     </b-card>
@@ -114,5 +114,9 @@ h3 {
 
 button {
   margin: auto;
+}
+
+.btn {
+  background: #233A4D;
 }
 </style>

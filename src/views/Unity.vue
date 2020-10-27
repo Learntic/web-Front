@@ -44,7 +44,7 @@ export default {
         localStorage.removeItem("user");
       }
     }
-    setTimeout(() => {this.unityHandler()}, 2500)
+    setTimeout(() => {this.unityHandler()}, 10000)
     this.unityHandler();
     console.log(this.$route.params.id)
   }
