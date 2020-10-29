@@ -3,8 +3,8 @@
     <h1>Temario</h1>
     <b-card v-for="item in topics" :key="item.id" class="cardsAllTopics">
       <div v-if="loggedIn">
-        <router-link :to="{ name: 'TopicView', params: { id: item.topic_id } }">
-          <b-card-title v-on:click="test(item.topic_url)">
+        <router-link :to="{ name: 'TopicView', params: { id: item.topic_id } }"  :event="clickable ? 'click' : ''">
+          <b-card-title>
             <strong> {{ item.topic_name }} </strong>
           </b-card-title>
         </router-link>
@@ -22,9 +22,8 @@
 </template>
 
 <script>
-import { COURSE_TOPICS } from "../graphql/queries";
-import { authComputed } from "../store/helpers";
-import {EventBus} from "../event-bus";
+import { COURSE_TOPICS, COURSES_USER } from "../graphql/queries";
+import { authComputed, getCurrentUser } from "../store/helpers";
 
 export default {
   name: "topic",
@@ -32,13 +31,18 @@ export default {
     return {
       topics: [],
       currentCourse: parseInt(this.$route.params.id),
+      userCourses: [],
+      currentUser: "",
+      clickable: false
     };
   },
   computed: {
     ...authComputed,
   },
   created() {
+    this.currentUser = getCurrentUser() 
     this.allTopics();
+    this.getUserCourses();
   },
   methods: {
     allTopics: async function() {
@@ -53,10 +57,21 @@ export default {
           this.topics = res.data.courseTopics;
         });
     },
-    test: function(topic_url) {
-      EventBus.$emit('sendTopicURL', topic_url);
-      console.log(topic_url)
-    }
+    getUserCourses: async function() {
+      await this.$apollo
+        .query({
+          query: COURSES_USER,
+          variables:{
+            username: this.currentUser.username,
+          }
+        })
+        .then((res) => {
+          this.userCourses = res.data.coursesByUserId.map((course) => {return course.course_id});
+          this.clickable = this.userCourses.includes(this.currentCourse)
+        }).catch((err)=>{
+          console.log(err);
+        });
+    },
   },
 };
 </script>

@@ -29,6 +29,8 @@
 import { NOT_COURSES_BY_USER_ID } from "../graphql/queries";
 import {EventBus} from "../event-bus"
 import { COURSE_INSCRIPTION } from "../graphql/mutations";
+import { getCurrentUser } from "../store/helpers";
+
 export default {
   name: "NotMyCourses",
   data() {
@@ -41,13 +43,7 @@ export default {
     mensaje: String
   },
   created() {
-      if (localStorage.getItem("user")) {
-      try {
-        this.currentUser = JSON.parse(localStorage.getItem("user"));
-      } catch (e) {
-        localStorage.removeItem("user");
-      }
-    }
+      this.currentUser = getCurrentUser()
     this.notCoursesbyUserId();
   },
   methods: {

@@ -23,6 +23,7 @@
 import { GET_NOT_MY_FRIENDS } from "../graphql/queries";
 import { ADD_FRIEND } from "../graphql/mutations";
 import {EventBus} from "../event-bus"
+import { getCurrentUser } from "../store/helpers";
 
 export default {
   name: "Friends",
@@ -74,13 +75,7 @@ export default {
     }
   },
   created() {
-    if (localStorage.getItem("user")) {
-      try {
-        this.currentUser = JSON.parse(localStorage.getItem("user"));
-      } catch (e) {
-        localStorage.removeItem("user");
-      }
-    }
+    this.currentUser = getCurrentUser()
     this.getAllUsers();
   }
 };

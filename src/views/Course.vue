@@ -3,11 +3,12 @@
     <div class="row">
       <div class="col-md-7">
         <topics></topics>
-        <router-link :to="{ name: 'Unity', params: { id: $route.params.id }}">
-          <b-button class="btn" block v-on:click="goToUnity()">
+        <router-link :to="{ name: 'Unity', params: { id: $route.params.id }}" :event="clickable ? 'click' : ''">
+          <b-button class="btn" block>
               Ir a la evaluación
           </b-button>
         </router-link>
+          <p id="msg" v-if="!clickable"> <b> Recuerda no estas registrado por tanto no puedes acceder a los contenidos del curso</b></p>
         <allFeedbacks></allFeedbacks>
       </div>
       <div class="col-md-5">
@@ -23,11 +24,12 @@
 </template>
 
 <script>
-import { authComputed } from "../store/helpers";
+import { authComputed, isRegistered, getCurrentUser } from "../store/helpers";
 import topics from "@/components/topics.vue";
 import AllCourses from "@/components/allCourses.vue";
 import NotMyCourses from "@/components/NotMyCourses.vue";
 import allFeedbacks from "@/components/allFeedbacks.vue";
+
 export default {
   name: "courseView",
   components: {
@@ -39,10 +41,17 @@ export default {
   computed: {
     ...authComputed,
   },
-  methods: {
-    goToUnity: function() {
-      console.log("hey")
+  data() {
+    return {
+      clickable : false,
+      currentUser: {}
     }
+  },
+  async created() {
+    this.currentUser = getCurrentUser() 
+    await isRegistered(this, this.currentUser.username, this.$route.params.id).then((res) => {
+      this.clickable = res
+    })
   }
 };
 </script>
@@ -52,6 +61,11 @@ export default {
   background: #233a4d;
   margin-left: 5%;
   margin-top: 1%;
+}
+
+#msg {
+  margin-top: 2%;
+  color: red;
 }
 
 </style>

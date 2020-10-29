@@ -46,6 +46,9 @@
 <script>
 import { CREATE_FEEDBACK } from "../graphql/mutations";
 import {EventBus} from "../event-bus"
+import { getCurrentUser } from "../store/helpers";
+
+
 export default {
   name: "CreateFeedback",
   data() {
@@ -59,13 +62,7 @@ export default {
     };
   },
   created() {
-    if (localStorage.getItem("user")) {
-      try {
-        this.currentUser = JSON.parse(localStorage.getItem("user"));
-      } catch (e) {
-        localStorage.removeItem("user");
-      }
-    }
+    this.currentUser = getCurrentUser()
   },
   methods: {
     createFeedback: async function (){

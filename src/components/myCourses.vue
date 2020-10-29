@@ -19,6 +19,8 @@
 <script>
 import { EventBus } from '../event-bus';
 import { COURSES_USER } from "../graphql/queries";
+import { getCurrentUser } from "../store/helpers";
+
 export default {
   name: "myCourses",
   data() {
@@ -28,13 +30,7 @@ export default {
     };
   },
   created() {
-    if (localStorage.getItem("user")) {
-      try {
-        this.currentUser = JSON.parse(localStorage.getItem("user"));
-      } catch (e) {
-        localStorage.removeItem("user");
-      }
-    }
+    this.currentUser = getCurrentUser()
     this.myCourses();
     EventBus.$on('courseAdd', (value) => {
       this.myCoursesad.push(value);
