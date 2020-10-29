@@ -37,14 +37,8 @@ export default {
     }
   },
   created() {
-    if (localStorage.getItem("user")) {
-      try {
-        this.currentUser = JSON.parse(localStorage.getItem("user"));
-      } catch (e) {
-        localStorage.removeItem("user");
-      }
-    }
-    setTimeout(() => {this.unityHandler()}, 2500)
+    this.currentUser = getCurrentUser()
+    setTimeout(() => {this.unityHandler()}, 10000)
     this.unityHandler();
     console.log(this.$route.params.id)
   }

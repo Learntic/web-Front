@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <div id="card-title" class="col-md-8">
-          <button v-on:click="addFriend(item.uid)">Agregar</button>
+          <b-button class="btn" v-on:click="addFriend(item.uid)">Agregar</b-button>
         </div>
       </div>
     </b-card>
@@ -23,6 +23,7 @@
 import { GET_NOT_MY_FRIENDS } from "../graphql/queries";
 import { ADD_FRIEND } from "../graphql/mutations";
 import {EventBus} from "../event-bus"
+import { getCurrentUser } from "../store/helpers";
 
 export default {
   name: "Friends",
@@ -74,13 +75,7 @@ export default {
     }
   },
   created() {
-    if (localStorage.getItem("user")) {
-      try {
-        this.currentUser = JSON.parse(localStorage.getItem("user"));
-      } catch (e) {
-        localStorage.removeItem("user");
-      }
-    }
+    this.currentUser = getCurrentUser()
     this.getAllUsers();
   }
 };
@@ -114,5 +109,9 @@ h3 {
 
 button {
   margin: auto;
+}
+
+.btn {
+  background: #233A4D;
 }
 </style>

@@ -23,6 +23,7 @@
 
 <script>
 import {ACHIEVEMENTS_BY_USERNAMES} from "../graphql/queries"
+import { getCurrentUser } from "../store/helpers";
 
 export default {
   data() {
@@ -48,13 +49,7 @@ export default {
     }
   },
   created() {
-    if (localStorage.getItem("user")) {
-      try {
-        this.currentUser = JSON.parse(localStorage.getItem("user"));
-      } catch (e) {
-        localStorage.removeItem("user");
-      }
-    }
+    this.currentUser = getCurrentUser()
     this.getUserAchievements();
   }
 };
