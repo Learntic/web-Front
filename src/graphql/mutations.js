@@ -35,10 +35,12 @@ export const ADD_FRIEND = gql`
 //auth-ms
 
 export const SIGN_UP = gql`
-mutation signUp($username: String!, $password: String!) {
+mutation signUp($username: String!, $password: String!, $name: String!, $age: Int!) {
     signUp(account: { 
         username: $username
         password: $password 
+        name: $name 
+        age: $age
         }) {
       username
     }

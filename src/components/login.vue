@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <h3>Ya tienes una cuenta!</h3>
           <h5>Ingresa aquí</h5>
-          <b-form @submit.prevent="loginUsuario">
+          <b-form @submit.prevent="loginUsuario" class="loginForm">
             <b-form-group
               id="input-group-1"
               label="Username:"
@@ -95,5 +95,8 @@ export default {
 }
 .loginButton {
   background-color: #233a4d;
+}
+.loginForm{
+  text-align: left;
 }
 </style>

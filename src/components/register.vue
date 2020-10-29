@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <h3>¿Aún no tienes una cuenta?</h3>
         <h5>Créala aquí</h5>
-        <b-form @submit.prevent="registerUser">
+        <b-form @submit.prevent="registerUser" class="formRegister">
           <b-form-group
             id="input-group-1"
             label="Username:"
@@ -12,7 +12,7 @@
           >
             <b-form-input
               id="input-1"
-              v-model="user"
+              v-model="user.username"
               required
               placeholder="Ingresa tu Username"
             ></b-form-input>
@@ -25,10 +25,37 @@
           >
             <b-form-input
               id="input-2"
-              v-model="password"
+              v-model="user.password"
               required
               placeholder="Ingresa una contraseña"
               type="password"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-3"
+            label="Ingresa tu nombre:"
+            label-for="input-3"
+          >
+            <b-form-input
+              id="input-3"
+              v-model="user.name"
+              required
+              placeholder="Ingresa tu Nombre"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-4"
+            label="Ingresa tu Edad:"
+            label-for="input-4"
+          >
+            <b-form-input
+              id="input-4"
+              v-model="user.age"
+              required
+              type = "number"
+              placeholder="Ingresa tu Edad"
             ></b-form-input>
           </b-form-group>
 
@@ -50,8 +77,12 @@ export default {
   name: "RegisterComponente",
   data() {
     return {
-      user: "",
-      password: "",
+      user: {
+       username: "",
+       password: "", 
+       name: "",
+       age: 0,
+      },
       show: false,
       mensaje: ""
     };
@@ -62,8 +93,10 @@ export default {
         .mutate({
           mutation: SIGN_UP,
           variables: {
-            username: this.user,
-            password: this.password,
+            username: this.user.username,
+            password: this.user.password,
+            name: this.user.name,
+            age: this.user.age
           },
         })
         .then((res) => {
@@ -87,13 +120,15 @@ export default {
   overflow: hidden;
 }
 .login {
-  display: flex;
   padding: 30px;
   border: 1px solid #233a4d;
   border-radius: 5px;
   background-color: white;
+  place-items: left;
 }
 .loginButton {
   background-color: #233a4d;
+}.formRegister{
+  text-align: left;
 }
 </style>
