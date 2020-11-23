@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1 id="text"> Bienvenido a la evaluación </h1>
+    <p> Esperamos hayas podido acoplar los conceptos que expusimos durante las secciones y puedas reflejar tu aprendizaje con esta corta prueba. ¡Adelante!</p>
     <unity
       :src="unityConfig[$route.params.id-1].unitySrc"
       :unityLoader="unityConfig[$route.params.id-1].unityLoader"
@@ -12,6 +14,8 @@
 
 <script>
 import unity from "vue-unity-webgl";
+import { getCurrentUser } from "../store/helpers";
+
 export default {
   components: {
     unity,
@@ -33,16 +37,24 @@ export default {
   },
   methods: {
     unityHandler: async function() {
+      console.log(this.currentUser.username)
       this.$refs.unityInstance.gameInstance.SendMessage("User", "setUsername", this.currentUser.username)
     }
   },
   created() {
-    this.currentUser = getCurrentUser()
+    this.currentUser = getCurrentUser();
     setTimeout(() => {this.unityHandler()}, 10000)
     this.unityHandler();
-    console.log(this.$route.params.id)
   }
 };
 </script>
 
-<style></style>
+<style>
+#unity-container {
+  margin: auto !important;
+}
+
+#text {
+  margin-top: 2%;
+}
+</style>
