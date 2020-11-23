@@ -6,6 +6,7 @@ import courseView from "../views/Course.vue";
 import UnityView from "../views/Unity.vue";
 import Friends from "../views/Friends.vue";
 import TopicsView from "../views/TopicsView.vue";
+import GuestsView from "../views/Guests.vue"
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ const routes = [{
         path: "/course/topic/:id",
         name: "TopicView",
         component: TopicsView
+    },
+    {
+        path: "/guests",
+        name: "GuestsView",
+        component: GuestsView
     },
     {
         path: "/about",
