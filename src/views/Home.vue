@@ -9,7 +9,7 @@
         <Profile></Profile>
         <Achievements> </Achievements>
       </div>
-      <Guests></Guests>
+      <Guestss></Guestss>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ import Profile from "@/components/Profile.vue";
 import NotMyCourses from "@/components/NotMyCourses.vue";
 import myCourses from "@/components/myCourses.vue";
 import Achievements from "@/components/Achievements.vue";
-import Guests from "@/components/Guests.vue";
+import Guestss from "@/components/Guests.vue";
 
 export default {
   name: "Home",
@@ -31,7 +31,7 @@ export default {
     myCourses,
     Profile,
     Achievements,
-    Guests
+    Guestss
   },
   computed: {
     ...authComputed,

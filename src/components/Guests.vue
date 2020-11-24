@@ -1,9 +1,10 @@
 <template>
 <div class="body">
+  <h1> Invitados </h1>
 <div class="cards">
   <b-card v-for="item in guests" :key="item.id" class="card">
       <b-card-title> {{item.nombre}} </b-card-title>
-      <b-card-subtitle> {{item.apellido }}</b-card-subtitle>
+      <b-card-text> {{item.apellido }}</b-card-text>
   </b-card>
   </div>
 </div>
@@ -26,7 +27,6 @@ export default {
         })
         .then(res => {
           this.guests = res.data.allGuests;
-          console.log(res.data);
         })
         .catch(err => {
           console.log(err);
