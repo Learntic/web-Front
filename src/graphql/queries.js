@@ -155,3 +155,13 @@ query GetAchievementsByUsernames($username: String!) {
     }
 }
 `
+// Guests
+export const ALL_GUESTS = gql`
+  query allGuests {
+    allGuests {
+      id
+      nombre
+      apellido
+    }
+  }
+`;
