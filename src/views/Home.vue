@@ -9,6 +9,7 @@
         <Profile></Profile>
         <Achievements> </Achievements>
       </div>
+      <Guestss></Guestss>
     </div>
   </div>
 </template>
@@ -21,6 +22,7 @@ import Profile from "@/components/Profile.vue";
 import NotMyCourses from "@/components/NotMyCourses.vue";
 import myCourses from "@/components/myCourses.vue";
 import Achievements from "@/components/Achievements.vue";
+import Guestss from "@/components/Guests.vue";
 
 export default {
   name: "Home",
@@ -28,7 +30,8 @@ export default {
     NotMyCourses,
     myCourses,
     Profile,
-    Achievements
+    Achievements,
+    Guestss
   },
   computed: {
     ...authComputed,
