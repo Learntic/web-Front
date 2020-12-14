@@ -8,3 +8,9 @@
         // host: 'test-dns.ml'
 //     } 
 //  } 
+
+module.exports = {
+        devServer: {
+          disableHostCheck: true
+        }
+      }
