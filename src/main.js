@@ -11,6 +11,9 @@ import VueApollo from "vue-apollo";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 Vue.use(BootstrapVue);
 
@@ -18,8 +21,7 @@ Vue.use(VueApollo);
 // HTTP connection to the API
 const httpLink = createHttpLink({
     // You should use an absolute URL here
-    // uri: `http://3.92.219.195:5000/graphql`
-    uri: 'https://3.221.124.186/graphql'
+    uri: process.env.VUE_APP_PROXY_URI
 });
 
 // Cache implementation
